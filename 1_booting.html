@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5; url=2_welcome.html">
+    <title>BOOTING</title>
+ ]
+ <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      width: 350px;
+      margin-bottom: 40px;
+    }
+
+    .rolling { /*Para conseguir fazer a imagem do carregamento ter movimento*/
+      width: 65px;
+      height: 65px;
+      animation: spin 2.5s linear infinite; /*Aqui coloquei 3 especificações: velocidade, ela vai ser linear e ela nunca para*/
+    }
+
+    @keyframes spin {/*define a animação spin do rolling*/
+      to { transform: rotate(360deg); }/*Determina que a animação vai girar 360 graus*/
+    }
+  </style>
+</head>
+<body>
+  <img src="images/windows-11.png" alt="Logo do Windows" class="logo">
+  <img src="images/Rolling@1x-3.3s-200px-200px.svg" alt="Carregando" class="rolling">
+</body>
+</html>
