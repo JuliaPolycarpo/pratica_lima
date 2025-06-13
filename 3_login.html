@@ -1,59 +1,229 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5; url=4_desktop.html">
-    <title>LOGIN</title>
-     <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="refresh" content="5; url=4_desktop.html">
+  <title>LOGIN</title>
+  <style>
+    
+    @keyframes fadeIn {
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+    }
+    
+    
     body {
       margin: 0;
+      padding: 0;
       height: 100vh;
-      background: url("images/windows11-default-wallpaper-scaled.jpg");
+      background: url("images/windows11-default-wallpaper-scaled.jpg") no-repeat center center fixed;
       background-size: cover;
-      backdrop-filter: 20px;
       font-family: "Segoe UI", sans-serif;
       color: white;
       display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden; /*Deixa a tela sem rolagem */
+      animation: fadeIn 900ms;
+    }
+
+    .fundo-embaçado {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(10px);
+      z-index: 0;
+    }
+
+    .conteudo {
+      position: relative;
+      z-index: 1; /*Precisa colocar por conta do filtro blur*/
+      display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      margin-top: -200px;/*Desse jeito a foto e formulário de senha fica mais pra cima e não ao centro*/
     }
 
     .usuario {
       width: 120px;
       height: 120px;
       border-radius: 50%;
+      background: rgb(210, 208, 208);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.178);/*Faz sombra no elemento*/
+      margin-bottom: 20px;
+    }
+
+    .foto {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .foto::before {
+      content: "";
+      position: absolute; /* Coloca dentro de ".foto" */
+      top: 0; /* manda ele ficar junto da borda superior do ".foto", que é o pai */
+      left: 50%; /* Faz parte da centralização */
+      transform: translateX(-50%); /* Faz parte da centralização */
+      width: 40px;
+      height: 40px;
+      background: rgb(83, 85, 91);
+      border-radius: 50%;
+      margin-top: 10px; /* Deixo ele mais para baixo e não encostado na borda*/
+    }
+    
+
+    .foto::after {
+      content: "";
+      position: absolute; /* Coloca dentro de ".foto" */
+      bottom: 0; /* manda ele ficar junto da borda inverior do ".foto", que é o pai */
+      left: 50%; /* Faz parte da centralização */
+      transform: translateX(-50%); /* Faz parte da centralização */
+      width: 60px;
+      height: 33px;
+      background: rgb(83, 85, 91);
+      border-radius: 30% / 100%; /* Com as 2 medidas eu consigo fazer a ilusão de ombro e tronco */
+      margin-bottom: 6.5px; /* Deixo ele mais para cima e não encostado na borda*/
     }
 
     .nome {
       font-size: 30px;
-      font-weight: bold;
       margin-bottom: 20px;
+      text-shadow: 0px 0px 1px black;
     }
 
     input {
-      padding: 8px 12px;
-      font-size: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 6px;
-      background-color: rgba(255, 255, 255, 0.1); /* leve transparência */
+      padding: 8px 20px; /*O tamanho da caixa do formulário*/
+      font-size: 14px;
+      border: 1.5px solid rgba(66, 135, 255, 0.699);
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0.5px 0.5px 2px black;
       color: white;
-      text-align: center;
+      text-align: left; /* Deixa o texto começando da esquerda */
       width: 150px;
-      outline: none;
+      outline: none; /* Tira a borda padrão branca quando selecionamos o campo de senha e mantém o que eu havia solicitado */
     }
 
     input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(242, 245, 249, 0.6); /* Isso aqui é outro pseudo-elemento e só vale para o "Senha" dentro da caixa*/
+    }
+
+    /* Outros perfis */
+    .outros-perfis {
+      position: absolute; 
+      bottom: 20px; /* 20 px acima da borda indefrior de "body" */
+      left: 20px; 
+      display: flex;
+      flex-direction: column;
+      gap: 13px; /* Cria o espaço entre os perfis, igual no "sobre-mim" */
+      z-index: 1; /* Tem que colocar pra não ficar embaçado com o blur */
+    }
+
+    .perfil {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Espaço entre a foto de perfil e o nome */
+      cursor: pointer; /* Deixa o cursor de mãozinha, igual no "sobre-mim" */
+      transition: transform 0.2s ease, color 0.2s ease; /* Aplico a transição de mudança de cor e coloco zoom ao passar o mouse */
+    }
+
+    .foto-perfil {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgb(210, 208, 208);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: box-shadow 0.2s ease; /* Coloca sombra quando o mouse passar em cima */
+    }
+
+    .foto-perfil::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      background: rgb(83, 85, 91);
+      border-radius: 50%;
+      margin-top: 2px;
+    }
+
+    .foto-perfil::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 10px;
+      background: rgb(83, 85, 91);
+      border-radius: 30% / 100%;
+      margin-bottom: 2.5px;
+    }
+
+    .perfil span {
+      font-size: 14px;
+      color: white;
+      transition: color 0.2s ease; /* Transição na cor quando o mouse passar em cima */
+    }
+
+    /* Efeito Houver */
+    .perfil:hover {
+      transform: scale(1.05); /* Aumenta em 5% o tamnho do perfil */
+    }
+
+    .perfil:hover .foto-perfil {
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Sombra branca em volta da foto de perfil */
+    }
+
+    .perfil:hover span {
+      color: rgb(168, 200, 255); /* Muda a cor do nome do perfil */
     }
   </style>
 </head>
 <body>
-  <img src="images/ftfundotransp.png" alt="Foto do Usuário" class="usuario">
-  <div class="nome">Nome Usuário</div>
-  <form>
-    <input type="text" placeholder="PIN" required>
-  </form>
+  <div class="fundo-embaçado"></div>
+
+  <div class="conteudo">
+    <div class="usuario">
+      <div class="foto"></div>
+    </div>
+    <div class="nome">Aluno 1DSI</div>
+      <input type="password" placeholder="Senha" required />
+    </form>
+  </div>
+
+  <!-- Outros Perfis -->
+  <div class="outros-perfis">
+    <div class="perfil">
+      <div class="foto-perfil"></div>
+      <span>Aluno 2DSI</span>
+    </div>
+    <div class="perfil">
+      <div class="foto-perfil"></div>
+      <span>Aluno FIC</span>
+    </div>
+    <div class="perfil">
+      <div class="foto-perfil"></div>
+      <span>Instrutor</span>
+    </div>
+    <div class="perfil">
+      <div class="foto-perfil"></div>
+      <span>Suporte</span>
+    </div>
+  </div>
 </body>
 </html>

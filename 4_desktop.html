@@ -1,12 +1,140 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="5; url=5_bsod.html">
-    <title>DESKTOP</title>
+    <title>Área de Trabalho</title>
+    <style>
+        @keyframes subir {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        }
+    
+        * { /* "*" significa todos os elementos*/
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url(images/windows11-alt1-wallpaper.webp);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            animation: subir 1s ease-out forwards;
+        }
+       
+        
+        /* Ícones da área de trabalho */
+        .desktop-icons {
+            position: absolute;
+            top: 20px;
+            display: grid; /* Organiza em colunas */
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Arruma automaticamnete o número de colunas no espaço disponível */
+            gap: 1px;
+            padding: 10px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .icon {
+            text-align: center;
+            color: white;
+            font-size: 11px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black;
+        }
+
+        .icon img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+
+        /* Barra de tarefas */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgb(26, 25, 25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 14px;
+            box-shadow: 0 -2px 5px rgba(90, 90, 90, 0.2);
+            color: black;
+        }
+
+        .taskbar-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .taskbar-icons img {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+        }
+
+        /* Relógio e data no canto direito */
+        .taskbar-time {
+            position: absolute;
+            right: 15px;
+            bottom: 8px;
+            text-align: right;
+            font-size: 12px;
+            line-height: 1.4; /* Melhora o espaçamento do horário */
+            color: azure;
+        }
+    </style>
 </head>
 <body>
-    
+
+    <!-- Ícones da área de trabalho -->
+    <div class="desktop-icons">
+        <div class="icon">
+            <img src="images/icons8-explorador-de-arquivos-novo-48.png" alt="Ícone 1">
+            <p>Arquivos</p>
+        </div>
+        <div class="icon">
+            <img src="images/logo-google-chrome-4096.png" alt="Ícone 2">
+            <p>Chrome</p>
+        </div>
+        <div class="icon">
+            <img src="images/visual-studio-code.svg" alt="Ícone 3">
+            <p>VS Code</p>
+        </div>
+    </div>
+
+    <!-- Barra de tarefas -->
+    <div class="taskbar">
+        <div class="taskbar-icons">
+            <img src="images/windows-11.png" alt="Iniciar" title="Iniciar">
+            <img src="images/icons8-explorador-de-arquivos-novo-48.png" alt="Arquivos" title="Arquivos">
+            <img src="images/Microsoft_Store_Fluent_Design_icon_(2).png" alt="Microsoft Store" title="Microsoft Store">
+            <img src="images/logo-google-chrome-4096.png" alt="Chrome" title="Chrome">
+            <img src="images/visual-studio-code.svg" alt="VS Code" title="VS Code">
+        </div>
+
+        </div>
+        <div class="taskbar-time">
+            <div>09:10</div>
+            <div>13/06/2025</div>
+        </div>
+    </div>
+
 </body>
 </html>

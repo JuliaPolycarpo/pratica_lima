@@ -3,10 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5; url=1_booting.html">
+    <meta http-equiv="refresh" content="5; url=1_booting.html"> 
     <title>BSOD</title>
+<style>
+
+  @keyframes fadeIn {
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background-color: #0078d7; /* Azul Windows BSOD */
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Deixa tudo começando da esquerda */
+    padding-left: 8vw; /* Dá espaço para não ficar totalmente colado a esquerda */
+    box-sizing: border-box; /* Fa com que o padding seja incluso no tamanho total */
+    animation: fadeIn 1000ms;
+  }
+
+  h1 {
+    font-size: 96px;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    user-select: none; /* Os elementos não são reconhecidos pelo mouse */
+  }
+
+  p {
+    font-size: 22px;
+    line-height: 1.4; /* Espaço entre as linhas */
+    max-width: 650px; /* Altura maxima das letras */
+    user-select: none;
+    margin-top: 0;
+  }
+
+  .error-code {
+    margin-top: 30px;
+    font-family: Consolas, monospace; /* Deixa fonte separada */
+    font-size: 18px;
+  }
+</style>
 </head>
 <body>
-    
+  <h1>:(</h1>
+  <p>Seu dispositivo encontrou um problema e precisa ser reiniciado.<br>
+  Estamos coletando algumas informações de erro e, em seguida, reiniciaremos para você.</p>
+  <p>Se quiser saber mais, você pode pesquisar online mais tarde por este erro:</p>)
+  <div class="error-code">STOP CODE: PAGE_FAULT_IN_NONPAGED_AREA</div>
 </body>
 </html>

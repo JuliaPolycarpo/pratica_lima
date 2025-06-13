@@ -7,7 +7,17 @@
     <title>BOOTING</title>
  ]
  <style>
-    body {
+
+      @keyframes fadeIn {
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+    
+      body {
       margin: 0;
       height: 100vh;
       background: black;
@@ -15,6 +25,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      animation: fadeIn 1000ms;
     }
 
     .logo {
